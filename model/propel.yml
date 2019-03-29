@@ -1,0 +1,13 @@
+propel:
+    paths:
+        schemaDir: ./schemas
+        phpDir: ../src
+    database:
+        connections:
+            default:
+                adapter: mysql
+                dsn: mysql:host=localhost;port=3306;dbname=dam2t02
+                user: dam2t02
+                password: escape.room
+                settings:
+                    charset: utf8

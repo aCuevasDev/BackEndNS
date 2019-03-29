@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Backend ScapeRoom.iml" filepath="$PROJECT_DIR$/.idea/Backend ScapeRoom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/BackEndNS.iml" filepath="$PROJECT_DIR$/.idea/BackEndNS.iml" />
     </modules>
   </component>
 </project>

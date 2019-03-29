@@ -1,5 +1,17 @@
 {
-  "require": {
-    "propel/propel": "~2.0@dev"
-  }
+    "name": "DAM2T02/api",
+    "authors": [
+        {
+            "name": "DAM2T02",
+            "email": "dam2t02@stucom.flx.cat"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "API\\": "src/API/" }
+    },
+    "require": {
+        "slim/slim": "^3.12",
+        "propel/propel": "~2.0@dev",
+        "twig/twig": "^2.6"
+    }
 }

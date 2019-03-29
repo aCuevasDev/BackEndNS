@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [ `hostname` != srv.flx.cat ]
+then
+  echo "Do it only from production server!!!"
+  exit
+fi
+
+APIDIR=~/api
+MODELDIR=$APIDIR/model
+PROPEL=$APIDIR/vendor/bin/propel
+COMPOSER=composer
+
+# Pre-backup
+backupAPI
+
+# Update the schema
+pushd $MODELDIR > /dev/null
+$PROPEL diff && $PROPEL migrate && $PROPEL build && $PROPEL config:convert
+popd > /dev/null
+$COMPOSER --working-dir=$APIDIR dump-autoload
+
+# Post-backup
+backupAPI
+cd $APIDIR
+git add -A .
+git commit -m "`date`"
+git push origin master

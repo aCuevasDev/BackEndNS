@@ -3,23 +3,24 @@
           xsi:noNamespaceSchemaLocation="http://xsd.propelorm.org/1.6/database.xsd"
           namespace="API\Model">
 
-  <table name="user">
-    <column name="createdAt" type="TIMESTAMP" required="true"/>
-    <column name="deletedAt" type="TIMESTAMP" />
-    <column name="username" type="varchar" size="255" required="true"/>
-    <column name="email" type="varchar" size="255" required="true" />
-    <column name="password" type="varchar" size="255" required="true"/>
-    <unique>
-      <unique-column name="username" />
-    </unique>
-    <unique>
-    <unique-column name="email" />
-    </unique>
-  </table>
+    <table name="user">
+        <column name="code" type="integer" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="createdAt" type="TIMESTAMP" required="true"/>
+        <column name="deletedAt" type="TIMESTAMP"/>
+        <column name="username" type="varchar" size="255" required="true"/>
+        <column name="email" type="varchar" size="255" required="true"/>
+        <column name="password" type="varchar" size="255" required="true"/>
+        <unique>
+            <unique-column name="username"/>
+        </unique>
+        <unique>
+            <unique-column name="email"/>
+        </unique>
+    </table>
 
-  <table name="photo">
-   <column name="image" type="varchar" size="255" required="true"/>
-   <column name="labels" type="boolean" required="true" defaultValue="false" />
-   </table>
-  
+    <table name="photos">
+        <column name="image" type="varchar" size="255" required="true"/>
+        <column name="labels" type="varchar" size="255" required="false" defaultValue="false"/>
+    </table>
+
 </database>

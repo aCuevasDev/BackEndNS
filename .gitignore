@@ -1,7 +1,0 @@
-.DS_Store
-*~
-composer.lock
-tmp/*
-vendor/*
-/nbproject/private/
-README.txt

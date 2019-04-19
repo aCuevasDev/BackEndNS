@@ -1,7 +1,5 @@
 <?php
 
-    return $response->withJSON(["hey"], 200);
-
     $paramMap = $request->getParsedBody();
     if ($paramMap['email'] == null ||
         $paramMap['username'] == null ||
@@ -18,4 +16,4 @@
     $dateTime = new DateTime();
     $user->setCreated($dateTime->getTimestamp());
     $user->save();
-    return $response->withJson($user, 200);
+    echo $response->withJson($user, 200);

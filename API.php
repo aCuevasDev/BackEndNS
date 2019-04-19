@@ -27,6 +27,10 @@ class API
         $this->get('/hints/{item}', '\API\API:getHints');
     }
 
+    public static function routes(){
+
+    }
+
 
     public static function register(Request $request, Response $response, array $args)
     {

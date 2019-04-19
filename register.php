@@ -1,6 +1,6 @@
 <?php
 
-    return $response->withJSON([], 200);
+    return $response->withJSON(["hey"], 200);
 
     $paramMap = $request->getParsedBody();
     if ($paramMap['email'] == null ||

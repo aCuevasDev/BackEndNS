@@ -6,19 +6,23 @@ $paramMap = $_GET;
 
 if ($paramMap['username'] == null ||
     $paramMap['password'] == null) {
-    echo "if";
-    $json = json_encode([]);
+    $arr = array('message' => 'invalid parameters');
+    $result = json_encode($arr);
     // 404
 } else {
+    $dao = new UsersDAO();
     echo "noIf";
     $username = $paramMap['username'];
     $password = $paramMap['password'];
-    echo "user" .$username ."pswrd" .$password;
-    $user = new User($username,$password);
-
-    $dao = new UsersDAO();
-    $result = $dao->insertUser($user);
-    $json = json_encode($result);
+    echo "user" . $username . "pswrd" . $password;
+//    if (!$dao->exists($username)) {
+        $user = new User($username, $password);
+        $queryResult = $dao->insertUser($user);
+        $result = json_encode($queryResult);
+//    } else {
+//        $arr = array('message' => 'username already exists');
+//        $result = json_encode($arr);
+//    }
 // 200
 }
-echo $json;
+echo "rslt: " . $result;

@@ -17,9 +17,16 @@ class User
         $this->username = $username;
         $this->password = $password;
 
-        $this->code = "USR".$usersDAO->getLastId();
+        $this->code = "USR".($usersDAO->getLastId()+1);
 
         $dateTime = new DateTime();
-        $this->createdAt = $dateTime->getTimestamp();
+        $date = $dateTime->getTimestamp();
+        $this->createdAt = date('d.m.y H:i:s', $date);
+    }
+
+    public function delete(){
+        $dateTime = new DateTime();
+        $date = $dateTime->getTimestamp();
+        $this->deletedAt = date('d.m.y H:i:s', $date);
     }
 }

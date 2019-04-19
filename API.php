@@ -2,13 +2,11 @@
 
 namespace API;
 
-use API\Model\UserQuery;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
-use \Propel\Runtime\ActiveQuery\Criteria as Criteria;
 use \DateTime as DateTime;
 
-class API extends \Slim\App
+class API
 {
 
     public function __construct()
@@ -17,7 +15,7 @@ class API extends \Slim\App
         parent::__construct(['settings' => $settings]);
 
         // Define the ROUTES
-        $this->get('/room/{code}/{name}', '\API\API:tmpAddRoom');
+        $this->get('/register', '\API\API::register');
         $this->get('/item/{code}/{room}/{name}/{qr}', '\API\API:tmpAddItem');
         $this->get('/hint/{hint}/{item}', '\API\API:tmpAddHint');
 

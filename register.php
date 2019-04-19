@@ -4,7 +4,7 @@ $paramMap = $_GET;
 if ($paramMap['email'] == null ||
     $paramMap['username'] == null ||
     $paramMap['password'] == null) {
-    echo $response->withJson([], 404);
+    echo $response->withJson(["aaa"], 404);
 }
 $email = $paramMap['email'];
 $username = $paramMap['username'];

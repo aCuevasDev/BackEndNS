@@ -5,8 +5,10 @@ echo "postGet";
 if ($paramMap['email'] == null ||
     $paramMap['username'] == null ||
     $paramMap['password'] == null) {
+    echo "if";
     return $response->withJson([], 404);
 }
+echo "noIf";
 $email = $paramMap['email'];
 $username = $paramMap['username'];
 $password = $paramMap['password'];

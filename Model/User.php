@@ -4,18 +4,15 @@ require_once('DAO/UsersDAO.php');
 
 class User
 {
-    public $code;
-    public $username;
-    public $password;
-    public $createdAt;
-    public $deletedAt;
+    private $code;
+    private $username;
+    private $password;
+    private $createdAt;
+    private $deletedAt;
 
-    public function __construct($username, $password)
+    public function __construct()
     {
         $usersDAO = new UsersDAO();
-
-        $this->username = $username;
-        $this->password = $password;
 
         $this->code = "USR" . ($usersDAO->getLastId() + 1);
 
@@ -24,10 +21,90 @@ class User
         $this->createdAt = date('d.m.y H:i:s', $date);
     }
 
-    public function delete()
+    private function delete()
     {
         $dateTime = new DateTime();
         $date = $dateTime->getTimestamp();
         $this->deletedAt = date('d.m.y H:i:s', $date);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param mixed $code
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * @return false|string
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param false|string $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    /**
+     * @param mixed $deletedAt
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->delete();
     }
 }

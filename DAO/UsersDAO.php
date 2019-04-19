@@ -6,11 +6,11 @@ class UsersDAO extends Connection
 {
     private $table = 'users';
 
-    public function getUser($code)
+    public function getUser($username)
     {
         $this->connect();
-        $query = "SELECT * FROM " . $this->table . " WHERE code = '" . $code . "';";
-        $result = $this->query($query)->fetch_object();
+        $query = "SELECT * FROM " . $this->table . " WHERE username = '" . $username . "';";
+        $result = $this->query($query)->fetch_object('User');
         $this->disconnect();
         return $result;
     }
@@ -36,7 +36,7 @@ class UsersDAO extends Connection
     public function insertUser(User $user)
     {
         $this->connect();
-        $query = "INSERT INTO users (code,createdAt,username,passwrd) VALUES('" . $user->code . "','" . $user->createdAt . "','" . $user->username . "','" . $user->password . "');";
+        $query = "INSERT INTO users (code,createdAt,username,password) VALUES('" . $user->getCode() . "','" . $user->getCreatedAt() . "','" . $user->getUsername() . "','" . $user->getPassword() . "');";
         $result = $this->query($query);
         if ($result) {
             $this->disconnect();

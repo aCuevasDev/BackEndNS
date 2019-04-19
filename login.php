@@ -13,14 +13,16 @@ if ($paramMap['username'] == null ||
     $dao = new UsersDAO();
     $username = $paramMap['username'];
     $password = $paramMap['password'];
-    if (!$dao->exists($username)) {
-        $user = new User();
-        $user->setUsername($username);
-        $user->setPassword($password);
-        if ($dao->insertUser($user)) {
+    $user = $dao->getUser($username);
+
+    if ($user == null) {
+        $result = Util::generateErrorJSON('incorrect username/password');
+    } else {
+        if ($user->getPassword() == $password) {
             $token = Token::generateToken($user);
             $result = Util::generateOKJSON($token);
-        } else $result = Util::generateErrorJSON('error inserting user');
-    } else $result = Util::generateErrorJSON('username already exists');
+            $result = Util::generateOKJSON($token);
+        } else $result = Util::generateErrorJSON('incorrect username/password');
+    }
 }
 echo $result;

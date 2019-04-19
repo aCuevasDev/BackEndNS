@@ -8,7 +8,7 @@ class Token
     public static function generateToken(User $user)
     {
         $header = Token::base64url_encode(json_encode(array('alg' => 'HS256', 'typ' => 'JWT')));
-        $payload = Token::base64url_encode($user->code);
+        $payload = Token::base64url_encode($user->getCode());
         $signature = Token::base64url_encode(hash_hmac('sha256', $header . '.' . $payload, Token::$secret_key, true));
         return $header . '.' . $payload . '.' . $signature;
     }

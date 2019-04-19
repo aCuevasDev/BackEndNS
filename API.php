@@ -25,13 +25,6 @@ class API
         $this->get('/rooms', '\API\API:getRooms');
         $this->get('/items/{room}', '\API\API:getItems');
         $this->get('/hints/{item}', '\API\API:getHints');
-        /*$this->get('/hello/{name}',             '\API\API:helloGET');
-        $this->get('/json',                     [$this,'jsonGET']);
-        $this->get('/teacher',                  [$this,'teachersGET']);
-        $this->get('/teacher/{id}',             [$this,'teacherGET']);
-        $this->get('/teacher/search/{search}',  [$this,'teacherSearchGET']);
-        $this->get('/assignment[/{id}]',        [$this,'assignmentGET']);
-        $this->get('/table',                    [$this,'tableGET']); */
     }
 
 

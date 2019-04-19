@@ -9,18 +9,20 @@ if ($paramMap['email'] == null ||
     $json = json_encode([]);
     // 404
     echo $json;
-}
-echo "noIf";
-$email = $paramMap['email'];
-$username = $paramMap['username'];
-$password = $paramMap['password'];
-$user = new \API\Model\User();
-$user->setUsername($paramMap['username']);
-$user->setPassword($paramMap['password']);
-$user->setEmail($paramMap['email']);
-$dateTime = new DateTime();
-$user->setCreated($dateTime->getTimestamp());
-$user->save();
-$json = json_encode($user);
+} else {
+    echo "noIf";
+    $email = $paramMap['email'];
+    $username = $paramMap['username'];
+    $password = $paramMap['password'];
+    echo "mail" .$email ."user" .$username ."pswrd" .$password;
+    $user = new \API\Model\User();
+    $user->setUsername($paramMap['username']);
+    $user->setPassword($paramMap['password']);
+    $user->setEmail($paramMap['email']);
+    $dateTime = new DateTime();
+    $user->setCreated($dateTime->getTimestamp());
+    $user->save();
+    $json = json_encode($user);
 // 200
-echo $json;
+    echo $json;
+}

@@ -6,7 +6,9 @@ if ($paramMap['email'] == null ||
     $paramMap['username'] == null ||
     $paramMap['password'] == null) {
     echo "if";
-    return $response->withJson([], 404);
+    $json = json_encode([]);
+    // 404
+    echo $json;
 }
 echo "noIf";
 $email = $paramMap['email'];
@@ -19,4 +21,6 @@ $user->setEmail($paramMap['email']);
 $dateTime = new DateTime();
 $user->setCreated($dateTime->getTimestamp());
 $user->save();
-echo $response->withJson($user, 200);
+$json = json_encode($user);
+// 200
+echo $json;

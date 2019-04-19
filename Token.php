@@ -1,13 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: alexc
- * Date: 11/04/2019
- * Time: 18:47
- */
-
-namespace API\Model;
-
 
 class Token
 {

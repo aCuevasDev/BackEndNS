@@ -1,28 +1,24 @@
 <?php
 require_once('Model\User.php');
 require_once('DAO\UsersDAO.php');
+require_once('Utils\Util.php');
+require_once('Token.php');
 
 $paramMap = $_GET;
 
 if ($paramMap['username'] == null ||
     $paramMap['password'] == null) {
-    $arr = array('message' => 'invalid parameters');
-    $result = json_encode($arr);
-    // 404
+    $result = Util::generateErrorJSON('invalid parameters');
 } else {
     $dao = new UsersDAO();
-    echo "noIf";
     $username = $paramMap['username'];
     $password = $paramMap['password'];
-    echo "user" . $username . "pswrd" . $password;
-//    if (!$dao->exists($username)) {
+    if (!$dao->exists($username)) {
         $user = new User($username, $password);
-        $queryResult = $dao->insertUser($user);
-        $result = json_encode($queryResult);
-//    } else {
-//        $arr = array('message' => 'username already exists');
-//        $result = json_encode($arr);
-//    }
-// 200
+        if ($dao->insertUser($user)) {
+            $token = Token::generateToken($user);
+            $result = Util::generateOKJSON($token);
+        }else $result = Util::generateErrorJSON('error inserting user');
+    } else $result = Util::generateErrorJSON('username already exists');
 }
 echo "rslt: " . $result;

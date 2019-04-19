@@ -8,7 +8,7 @@ class Token
     public static function generateToken(User $user)
     {
         $header = Token::base64url_encode(json_encode(array('alg' => 'HS256', 'typ' => 'JWT')));
-        $payload = Token::base64url_encode($user->getCode());
+        $payload = Token::base64url_encode($user->code);
         $signature = Token::base64url_encode(hash_hmac('sha256', $header . '.' . $payload, Token::$secret_key, true));
         return $header . '.' . $payload . '.' . $signature;
     }
@@ -26,8 +26,10 @@ class Token
         if ($jwt_values[2] != $signature) {
             return false;
         }
-        $user = \Model\UserQuery::create()->findPK(Token::base64url_decode($jwt_values[1]));
-        if ($user->getDeletedat() != null) {
+//        $user = \Model\UserQuery::create()->findPK(Token::base64url_decode($jwt_values[1]));
+        $dao = new UsersDAO();
+        $user = $dao->getUser(Token::base64url_decode($jwt_values[1]));
+        if ($user->deletedAt != null) {
             return false;
         }
         return $user;

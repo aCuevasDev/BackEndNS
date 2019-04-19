@@ -10,19 +10,22 @@ class Connection
 
     public function query($sql)
     {
-        $result = mysqli_query($this->connection,$sql);
+        $result = mysqli_query($this->connection, $sql);
         return $result;
     }
 
-    //Funciones basicas conectar/desconectar.
-    public function connect() {
-        $this->connection = mysqli_connect($this->host, $this->user, $this->pass,$this->db) or die("No se ha podido establecer la conexión con el servidor");
+    public function connect()
+    {
+        $this->connection = mysqli_connect($this->host, $this->user, $this->pass, $this->db);
     }
-    public function disconnect() {
+
+    public function disconnect()
+    {
         mysqli_close($this->connection);
     }
 
-    public function dbError(){
+    public function dbError()
+    {
         return mysqli_error($this->connection);
     }
 

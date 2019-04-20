@@ -19,4 +19,5 @@ class Util
         $arr = ['message' => 'invalid authentication', 'code' => 2];
         return json_encode($arr, JSON_UNESCAPED_SLASHES);
     }
+
 }

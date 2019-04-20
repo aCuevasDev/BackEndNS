@@ -20,6 +20,7 @@ create table photos
   photo        varchar(255) not null,
   createdAt    datetime     NOT NULL,
   labels       varchar(255),
+  description varchar(255),
   localization varchar(255),
   category     varchar(255),
   code_user    varchar(50),

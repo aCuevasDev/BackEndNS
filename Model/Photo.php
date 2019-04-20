@@ -2,12 +2,14 @@
 
 class Photo
 {
+    private $id;
     private $photo;
     private $createdAt;
     private $labels;
     private $localization;
     private $category;
     private $usrCode;
+    private $description;
 
 
     public function create($code)
@@ -120,6 +122,38 @@ class Photo
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
 }

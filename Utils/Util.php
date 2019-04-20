@@ -20,4 +20,15 @@ class Util
         return json_encode($arr, JSON_UNESCAPED_SLASHES);
     }
 
+    public static function getAllHeaders()
+    {
+        $headers = array();
+        foreach ($_SERVER as $name => $value) {
+            if (substr($name, 0, 5) == 'HTTP_') {
+                $headers[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value;
+            }
+        }
+        return $headers;
+    }
+
 }

@@ -1,5 +1,7 @@
 <?php
 
+require_once('Model/User.php');
+
 class PhotosDAO extends Connection
 {
     private $table = 'photos';
@@ -13,8 +15,49 @@ class PhotosDAO extends Connection
             $this->disconnect();
             return true;
         } else {
-//            $this->disconnect();
-            return $this->dbError();
+            $error = $this->dbError();
+            $this->disconnect();
+            return $error;
         }
     }
+
+    public function getAllPhotos()
+    {
+        $this->connect();
+        $query = "SELECT * FROM " . $this->table . ";";
+        $result = [];
+        $resultDB = $this->query($query);
+        while ($row = mysqli_fetch_assoc($resultDB)) {
+            array_push($result, $row);
+        }
+
+        if ($result != null) {
+            $this->disconnect();
+            return $result;
+        } else {
+            $error = $this->dbError();
+            $this->disconnect();
+            return $error;
+        }
+    }
+
+    public function getPhotosUser($usrCode)
+    {
+        $this->connect();
+        $query = "SELECT * FROM " . $this->table . "  WHERE code_user = '" . $usrCode . "';";
+        $result = [];
+        $resultDB = $this->query($query);
+        while ($row = mysqli_fetch_assoc($resultDB)) {
+            array_push($result, $row);
+        }
+        if ($result != null) {
+            $this->disconnect();
+            return $result;
+        } else {
+            $error = $this->dbError();
+            $this->disconnect();
+            return $error;
+        }
+    }
+
 }

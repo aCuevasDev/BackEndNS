@@ -1,6 +1,6 @@
 <?php
 
-require_once('DAO\UsersDAO.php');
+require_once('DAO/UsersDAO.php');
 
 class Token
 {

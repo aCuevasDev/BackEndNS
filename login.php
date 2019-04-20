@@ -1,7 +1,7 @@
 <?php
-require_once('Model\User.php');
-require_once('DAO\UsersDAO.php');
-require_once('Utils\Util.php');
+require_once('Model/User.php');
+require_once('DAO/UsersDAO.php');
+require_once('Utils/Util.php');
 require_once('Token.php');
 
 $paramMap = $_GET;

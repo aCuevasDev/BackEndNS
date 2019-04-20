@@ -17,9 +17,7 @@ if ($paramMap['username'] == null ||
     $email = $paramMap['email'];
     if (!$dao->exists($email)) {
         $user = new User();
-        $user->setUsername($username);
-        $user->setPassword($password);
-        $user->setEmail($email);
+        $user->create($username, $password, $email);
         if ($dao->insertUser($user)) {
             $token = Token::generateToken($user);
             $result = Util::generateOKJSON($token);

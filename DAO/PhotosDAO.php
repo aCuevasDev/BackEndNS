@@ -13,9 +13,8 @@ class PhotosDAO extends Connection
             $this->disconnect();
             return true;
         } else {
-            $this->disconnect();
-            return false;
+//            $this->disconnect();
+            return $this->dbError();
         }
     }
-
 }

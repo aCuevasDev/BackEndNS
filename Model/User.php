@@ -14,6 +14,15 @@ class User
 
     public function __construct()
     {
+
+    }
+
+    public function create($username, $password, $email)
+    {
+        $this->username = $username;
+        $this->password = $password;
+        $this->email = $email;
+
         $usersDAO = new UsersDAO();
 
         $this->code = "USR" . ($usersDAO->getLastId() + 1);

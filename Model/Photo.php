@@ -3,10 +3,28 @@
 class Photo
 {
     private $photo;
+    private $createdAt;
     private $labels;
     private $localization;
     private $category;
     private $usrCode;
+
+
+    public function create($code)
+    {
+        $this->usrCode = $code;
+
+        $dateTime = new DateTime();
+        $date = $dateTime->getTimestamp();
+        $this->createdAt = date('d.m.y H:i:s', $date);
+    }
+
+    public function setPhotoData(array $data)
+    {
+        foreach ($data as $prop => $value) {
+            $this->{$prop} = $value;
+        }
+    }
 
     /**
      * @return mixed
@@ -86,6 +104,22 @@ class Photo
     public function setUsrCode($usrCode)
     {
         $this->usrCode = $usrCode;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param mixed $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
     }
 
 }

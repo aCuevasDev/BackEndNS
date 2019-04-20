@@ -1,6 +1,6 @@
 <?php
 
-require_once ('DAO\UsersDAO.php');
+require_once('DAO\UsersDAO.php');
 
 class Token
 {
@@ -19,21 +19,24 @@ class Token
     public static function getUserFromToken($header)
     {
         $token = $header['Authentication'];
-        if (!isset($token) || $token == "") {
+
+        if (!isset($token) || $token == "")
             return false;
-        }
+
 
         $jwt_values = explode('.', $token);
         $signature = Token::base64url_encode(hash_hmac('sha256', $jwt_values[0] . '.' . $jwt_values[1], Token::$secret_key, true));
-        if ($jwt_values[2] != $signature) {
+        if ($jwt_values[2] != $signature)
             return false;
-        }
-//        $user = \Model\UserQuery::create()->findPK(Token::base64url_decode($jwt_values[1]));
+
         $dao = new UsersDAO();
         $user = $dao->getUserByCode(Token::base64url_decode($jwt_values[1]));
-        if ($user != null && $user->getDeletedAt() != null) {
+        if ($user == null)
             return false;
-        }
+
+        if ($user->getDeletedAt() != null)
+            return false;
+
         return $user;
     }
 

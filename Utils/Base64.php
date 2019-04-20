@@ -7,6 +7,4 @@ class Base64
         $data = explode(',', $base64);
         return base64_decode($data[1]);
     }
-
-
 }

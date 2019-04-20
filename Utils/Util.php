@@ -13,4 +13,10 @@ class Util
         $arr = ['message' => $message, 'code' => 1];
         return json_encode($arr, JSON_UNESCAPED_SLASHES);
     }
+
+    public static function generateErrorAuth()
+    {
+        $arr = ['message' => 'invalid authentication', 'code' => 2];
+        return json_encode($arr, JSON_UNESCAPED_SLASHES);
+    }
 }

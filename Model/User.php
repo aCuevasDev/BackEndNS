@@ -9,6 +9,8 @@ class User
     private $password;
     private $createdAt;
     private $deletedAt;
+    private $email;
+    private $photos;
 
     public function __construct()
     {
@@ -106,5 +108,21 @@ class User
     public function setDeletedAt($deletedAt)
     {
         $this->delete();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+require_once ('DAO\UsersDAO.php');
+
 class Token
 {
     private static $secret_key = 'aqpXC8uehLkZ1FZAi3oVPqXmuDWMif0l1ViyZtLtQzoqgFujzYaNT8PGz-zvqrnAelde50MAVDK5hNepKSwRyTAu26U7yaL-RpTE5RCGQ5d5wASVqG9MsG6lwM2dcGLrU4JGPjxoqjaB0spOgdY0ul21B_JBzZlpb9ETTw6R7HUJ_46nXDYUZ3PNom_I8Tihurq5nlkyZgB-GLgB2wfdeXe0-2wTmSn4Q8TRpboMJ0ztZEQqJIIkeb0n3tXZypITH7IrQtZE4ZMyl39fTEAojJr-Ijq1-_xr0mvomPwegyWlbLFAiZ8FUxrRg8CjR8QypgSv-dJGN2ITTswdl7FKMQ';
@@ -14,9 +16,9 @@ class Token
     }
 
     // Returns false if token is incorrect, a User object otherwise.
-    public static function getUserFromToken(Request $request)
+    public static function getUserFromToken($header)
     {
-        $token = $request->getHeader('Authorization')[0];
+        $token = $header['Authentication'];
         if (!isset($token) || $token == "") {
             return false;
         }
@@ -28,8 +30,8 @@ class Token
         }
 //        $user = \Model\UserQuery::create()->findPK(Token::base64url_decode($jwt_values[1]));
         $dao = new UsersDAO();
-        $user = $dao->getUser(Token::base64url_decode($jwt_values[1]));
-        if ($user->deletedAt != null) {
+        $user = $dao->getUserByCode(Token::base64url_decode($jwt_values[1]));
+        if ($user != null && $user->getDeletedAt() != null) {
             return false;
         }
         return $user;

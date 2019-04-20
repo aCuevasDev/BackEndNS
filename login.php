@@ -6,23 +6,22 @@ require_once('Token.php');
 
 $paramMap = $_GET;
 
-if ($paramMap['username'] == null ||
+if ($paramMap['email'] == null ||
     $paramMap['password'] == null) {
     $result = Util::generateErrorJSON('invalid parameters');
 } else {
     $dao = new UsersDAO();
-    $username = $paramMap['username'];
+    $email = $paramMap['email'];
     $password = $paramMap['password'];
-    $user = $dao->getUser($username);
-
+    $user = $dao->getUserByEmail($email);
     if ($user == null) {
-        $result = Util::generateErrorJSON('incorrect username/password');
+        $result = Util::generateErrorJSON('incorrect email or password');
     } else {
         if ($user->getPassword() == $password) {
             $token = Token::generateToken($user);
             $result = Util::generateOKJSON($token);
             $result = Util::generateOKJSON($token);
-        } else $result = Util::generateErrorJSON('incorrect username/password');
+        } else $result = Util::generateErrorJSON('incorrect email or password');
     }
 }
 echo $result;

@@ -1,24 +1,35 @@
 <?php
 
 require_once('DAO/Connection.php');
+require_once('Model/User.php');
 
 class UsersDAO extends Connection
 {
     private $table = 'users';
 
-    public function getUser($username)
+    public function getUserByEmail($email)
     {
         $this->connect();
-        $query = "SELECT * FROM " . $this->table . " WHERE username = '" . $username . "';";
+        $query = "SELECT * FROM " . $this->table . " WHERE email = '" . $email . "';";
         $result = $this->query($query)->fetch_object('User');
         $this->disconnect();
         return $result;
     }
 
-    public function exists($username)
+    public function getUserByCode($code)
     {
         $this->connect();
-        $query = "SELECT * FROM " . $this->table . " WHERE username = '" . $username . "';";
+        $query = "SELECT * FROM " . $this->table . " WHERE code = '" . $code . "';";
+        $result = $this->query($query)->fetch_object('User');
+        $this->disconnect();
+        return $result;
+
+    }
+
+    public function exists($email)
+    {
+        $this->connect();
+        $query = "SELECT * FROM " . $this->table . " WHERE email = '" . $email . "';";
         $result = $this->query($query)->fetch_object();
         $this->disconnect();
         return $result != null;
@@ -36,7 +47,7 @@ class UsersDAO extends Connection
     public function insertUser(User $user)
     {
         $this->connect();
-        $query = "INSERT INTO users (code,createdAt,username,password) VALUES('" . $user->getCode() . "','" . $user->getCreatedAt() . "','" . $user->getUsername() . "','" . $user->getPassword() . "');";
+        $query = "INSERT INTO " .$this->table ." (code,createdAt,username,password,email) VALUES('" . $user->getCode() . "','" . $user->getCreatedAt() . "','" . $user->getUsername() . "','" . $user->getPassword() . "','" . $user->getEmail() . "');";
         $result = $this->query($query);
         if ($result) {
             $this->disconnect();

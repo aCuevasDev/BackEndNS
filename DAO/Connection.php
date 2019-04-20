@@ -4,8 +4,8 @@ class Connection
 {
     private $connection;
     private $host = 'localhost:3306';
-    private $user = 'root';
-    private $pass = '1234';
+    private $user = 'ns';
+    private $pass = 'ns';
     private $db = 'ns';
 
     public function query($sql)

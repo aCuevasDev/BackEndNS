@@ -1,6 +1,7 @@
 <?php
 
 require_once('Model/User.php');
+require_once ('Model/Photo.php');
 
 class PhotosDAO extends Connection
 {
@@ -27,7 +28,7 @@ class PhotosDAO extends Connection
         $query = "SELECT * FROM " . $this->table . ";";
         $result = [];
         $resultDB = $this->query($query);
-        while ($row = mysqli_fetch_assoc($resultDB)) {
+        while ($row = mysqli_fetch_object($resultDB,'Photo')) {
             array_push($result, $row);
         }
 

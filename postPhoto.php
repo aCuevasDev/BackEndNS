@@ -5,7 +5,7 @@ require_once('DAO/PhotosDAO.php');
 require_once('Utils/Util.php');
 require_once('Utils/Base64.php');
 
-define('directory', '../savedPhotos/');
+define('directory', '/savedPhotos/');
 
 $headers = Util::getAllHeaders();
 $user = Token::getUserFromToken($headers);

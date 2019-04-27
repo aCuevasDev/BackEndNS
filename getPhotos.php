@@ -10,7 +10,7 @@ $user = Token::getUserFromToken($headers);
 if ($user != false) {
     $photosDAO = new PhotosDAO();
     $photosArr = $photosDAO->getAllPhotos();
-
+    
     $result = Util::generateOKJSON($photosArr);
 } else $result = Util::generateErrorAuth();
 

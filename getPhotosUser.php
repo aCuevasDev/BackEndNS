@@ -13,14 +13,8 @@ if ($user != false) {
         $usrCode = $paramMap['usrCode'];
         $photosDAO = new PhotosDAO();
         $photosArr = $photosDAO->getPhotosUser($usrCode);
-        $photos = [];
-        foreach ($photosArr as $photo) {
-            $img = file_get_contents($photo['photo']);
-            $base64 = Base64::imageToBase64($img);
-            $photo['photo'] = $base64;
-            array_push($photos, $photo);
-        }
-        $result = Util::generateOKJSON($photos);
+
+        $result = Util::generateOKJSON($photosArr);
 
     } else $result = Util::generateErrorJSON('invalid parameters');
 } else $result = Util::generateErrorAuth();

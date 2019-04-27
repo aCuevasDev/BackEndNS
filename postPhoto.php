@@ -33,6 +33,8 @@ if ($user != false) {
 
         $photosDAO = new PhotosDAO();
         $daoRes = $photosDAO->insertPhoto($photoObj);
+        if ($daoRes != true)
+            $result = Util::generateErrorJSON($daoRes);
     }
 } else $result = Util::generateErrorAuth();
 

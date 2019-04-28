@@ -16,7 +16,7 @@ class Util
 
     public static function generateErrorAuth()
     {
-        $arr = ['message' => 'invalid authentication', 'code' => 2];
+        $arr = ['message' => 'Invalid authentication', 'code' => 2];
         return json_encode($arr, JSON_UNESCAPED_SLASHES);
     }
 

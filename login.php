@@ -8,20 +8,20 @@ $paramMap = $_GET;
 
 if ($paramMap['email'] == null ||
     $paramMap['password'] == null) {
-    $result = Util::generateErrorJSON('invalid parameters');
+    $result = Util::generateErrorJSON('Invalid parameters');
 } else {
     $dao = new UsersDAO();
     $email = $paramMap['email'];
     $password = $paramMap['password'];
     $user = $dao->getUserByEmail($email);
     if ($user == null) {
-        $result = Util::generateErrorJSON('incorrect email or password');
+        $result = Util::generateErrorJSON('Incorrect email or password');
     } else {
         if ($user->getPassword() == $password) {
             $token = Token::generateToken($user);
             $result = Util::generateOKJSON($token);
             $result = Util::generateOKJSON($token);
-        } else $result = Util::generateErrorJSON('incorrect email or password');
+        } else $result = Util::generateErrorJSON('Incorrect email or password');
     }
 }
 echo $result;

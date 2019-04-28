@@ -14,7 +14,7 @@ $photo = json_decode($body, true);
 
 if ($user != false) {
     if ($photo['photo'] == null)
-        $result = Util::generateErrorJSON('invalid parameters');
+        $result = Util::generateErrorJSON('Invalid parameters');
     else {
         $base64 = $photo['photo'];
         $img = Base64::base64ToImage($base64);

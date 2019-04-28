@@ -16,7 +16,7 @@ if ($user != false) {
 
         $result = Util::generateOKJSON($photosArr);
 
-    } else $result = Util::generateErrorJSON('invalid parameters');
+    } else $result = Util::generateErrorJSON('Invalid parameters');
 } else $result = Util::generateErrorAuth();
 
 echo $result;

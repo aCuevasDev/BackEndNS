@@ -25,7 +25,7 @@ class PhotosDAO extends Connection
     public function getAllPhotos()
     {
         $this->connect();
-        $query = "SELECT * FROM " . $this->table . ";";
+        $query = "SELECT * FROM " . $this->table . " ORDER BY createdAt DESC;";
         $result = [];
         $resultDB = $this->query($query);
         while ($row = mysqli_fetch_assoc($resultDB)) {

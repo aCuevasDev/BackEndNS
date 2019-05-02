@@ -33,8 +33,10 @@ if ($user != false) {
 
         $photosDAO = new PhotosDAO();
         $daoRes = $photosDAO->insertPhoto($photoObj);
-        if ($daoRes != true)
+        if ($daoRes !== true) {
             $result = Util::generateErrorJSON($daoRes);
+            unlink($fileName);
+        }
     }
 } else $result = Util::generateErrorAuth();
 

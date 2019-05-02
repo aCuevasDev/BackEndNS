@@ -13,7 +13,7 @@ $body = file_get_contents('php://input');
 $photo = json_decode($body, true);
 
 if ($user != false) {
-    if ($photo['photo'] == null)
+    if ($photo['photo'] == null) // TODO perhaps allow to only edit description/labels?
         $result = Util::generateErrorJSON('Invalid parameters');
     else {
         $photosDAO = new PhotosDAO();

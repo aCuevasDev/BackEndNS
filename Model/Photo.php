@@ -18,7 +18,8 @@ class Photo
 
         $dateTime = new DateTime();
         $date = $dateTime->getTimestamp();
-        $this->createdAt = date('YYYY-MM-DD HH:ii:ss', $date);
+        $this->createdAt = $dateTime;
+//        $this->createdAt = date('d.m.y H:i:s', $dateTime);
     }
 
     public function setPhotoData(array $data)

@@ -6,7 +6,8 @@ class Photo
     private $photo;
     private $createdAt;
     private $labels;
-    private $localization;
+    private $latitude;
+    private $longitude;
     private $category;
     private $usrCode;
     private $description;
@@ -55,22 +56,6 @@ class Photo
     public function setLabels($labels)
     {
         $this->labels = $labels;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLocalization()
-    {
-        return $this->localization;
-    }
-
-    /**
-     * @param mixed $localization
-     */
-    public function setLocalization($localization)
-    {
-        $this->localization = $localization;
     }
 
     /**
@@ -151,6 +136,38 @@ class Photo
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * @param mixed $latitude
+     */
+    public function setLatitude($latitude): void
+    {
+        $this->latitude = $latitude;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * @param mixed $longitude
+     */
+    public function setLongitude($longitude): void
+    {
+        $this->longitude = $longitude;
     }
 
 }

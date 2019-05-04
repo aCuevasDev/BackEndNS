@@ -10,7 +10,7 @@ class PhotosDAO extends Connection
     public function insertPhoto(Photo $photo)
     {
         $this->connect();
-        $query = "INSERT INTO " . $this->table . " (photo,createdAt,labels,description,localization,category,code_user) VALUES('" . $photo->getPhoto() . "','" . $photo->getCreatedAt() . "','" . $photo->getLabels() . "','" . $photo->getDescription() . "','" . $photo->getLocalization() . "','" . $photo->getCategory() . "','" . $photo->getUsrCode() . "');";
+        $query = "INSERT INTO " . $this->table . " (photo,createdAt,labels,description,latitude,longitude,category,code_user) VALUES('" . $photo->getPhoto() . "','" . $photo->getCreatedAt() . "','" . $photo->getLabels() . "','" . $photo->getDescription() . "','" . $photo->getLatitude() . "','" . $photo->getLongitude() . "','" . $photo->getCategory() . "','" . $photo->getUsrCode() . "');";
         $result = $this->query($query);
         if ($result) {
             $this->disconnect();
@@ -80,7 +80,7 @@ class PhotosDAO extends Connection
     public function updatePhoto(Photo $photo)
     {
         $this->connect();
-        $query = "UPDATE " . $this->table . " SET labels = '" . $photo->getLabels() . "' ,description = '" . $photo->getDescription() . "' ,localization = '" . $photo->getLocalization() . "' ,category = '" . $photo->getCategory() . "' WHERE id = '" . $photo->getId() . "';";
+        $query = "UPDATE " . $this->table . " SET labels = '" . $photo->getLabels() . "' ,description = '" . $photo->getDescription() . "' ,latitude = '" . $photo->getLatitude() . "' ,longitude = '" . $photo->getLongitude() . "' ,category = '" . $photo->getCategory() . "' WHERE id = '" . $photo->getId() . "';";
         $result = $this->query($query);
         if ($result) {
             $this->disconnect();

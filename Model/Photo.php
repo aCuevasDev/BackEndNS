@@ -6,8 +6,7 @@ class Photo
     private $photo;
     private $createdAt;
     private $labels;
-    private $latitude;
-    private $longitude;
+    private $localization;
     private $category;
     private $usrCode;
     private $description;
@@ -141,33 +140,17 @@ class Photo
     /**
      * @return mixed
      */
-    public function getLatitude()
+    public function getLocalization()
     {
-        return $this->latitude;
+        return $this->localization;
     }
 
     /**
-     * @param mixed $latitude
+     * @param mixed $localization
      */
-    public function setLatitude($latitude): void
+    public function setLocalization($localization)
     {
-        $this->latitude = $latitude;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLongitude()
-    {
-        return $this->longitude;
-    }
-
-    /**
-     * @param mixed $longitude
-     */
-    public function setLongitude($longitude): void
-    {
-        $this->longitude = $longitude;
+        $this->localization = $localization;
     }
 
 }

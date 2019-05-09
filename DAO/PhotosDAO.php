@@ -2,6 +2,7 @@
 
 require_once('Model/User.php');
 require_once('Model/Photo.php');
+require_once('DAO/UsersDAO.php');
 
 class PhotosDAO extends Connection
 {
@@ -24,11 +25,14 @@ class PhotosDAO extends Connection
 
     public function getAllPhotos()
     {
+        $userDao = new UsersDAO();
         $this->connect();
         $query = "SELECT * FROM " . $this->table . " ORDER BY createdAt DESC;";
         $result = [];
         $resultDB = $this->query($query);
         while ($row = mysqli_fetch_assoc($resultDB)) {
+            $user = $userDao->getUserByCode($row['usrCode']);
+            $row['usrCode'] = $user['username'];
             array_push($result, $row);
         }
 

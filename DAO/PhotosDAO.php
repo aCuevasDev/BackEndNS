@@ -32,7 +32,7 @@ class PhotosDAO extends Connection
         $resultDB = $this->query($query);
         while ($row = mysqli_fetch_assoc($resultDB)) {
             $user = $userDao->getUserByCode($row['code_user']);
-            $row['usrCode'] = $user->username;
+            $row['usrCode'] = $user->getUsername();
             $row['username'] = $user->username ."a";
             var_dump($user);
             array_push($result, $row);
